@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>Zustand</title>
+	<title>Valtio</title>
 </svelte:head>
 
 {#if $usersStore.loaded}

@@ -12,7 +12,10 @@
 	<a href="/storeon" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
 		storeon
 	</a>
-	<a href="/reatom" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
-		reatom
+	<a href="/zustand" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+		zustand
+	</a>
+	<a href="/valtio" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+		valtio
 	</a>
 </div>

@@ -34,6 +34,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@reatom/core": "^2.0.19",
+		"@reatom/observable": "^1.0.0",
 		"@storeon/svelte": "^1.0.0",
 		"ky": "^0.30.0",
 		"nanostores": "^0.5.12",
