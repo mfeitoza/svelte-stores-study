@@ -37,6 +37,7 @@
 		"@storeon/svelte": "^1.0.0",
 		"ky": "^0.30.0",
 		"nanostores": "^0.5.12",
-		"storeon": "^3.1.5"
+		"storeon": "^3.1.5",
+		"zustand": "^4.0.0-rc.1"
 	}
 }
