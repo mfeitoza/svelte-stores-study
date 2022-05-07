@@ -18,4 +18,7 @@
 	<a href="/valtio" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
 		valtio
 	</a>
+	<a href="/custom" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+		custom
+	</a>
 </div>
