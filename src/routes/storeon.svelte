@@ -1,12 +1,24 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 
-	import { loaded, users } from '$lib/stores/users-nanostore';
 	import UserCard from '$lib/components/user-card.svelte';
+
+	import { provideStoreon } from '@storeon/svelte';
+	import { useStoreon } from '@storeon/svelte';
+
+	import { usersStore, type UsersState, type UsersEvent } from '$lib/stores/users-storeon';
+
+	provideStoreon(usersStore);
+	const { users, loaded, dispatch } = useStoreon<UsersState, UsersEvent>('users', 'loaded');
+
+	onMount(() => {
+		dispatch('fetchUsers');
+	});
 </script>
 
 <svelte:head>
-	<title>Users</title>
+	<title>Storeon</title>
 </svelte:head>
 
 {#if $loaded}
