@@ -7,8 +7,6 @@ Libraries used:
  - [storeon](https://github.com/storeon/storeon)
  - [valtio](https://github.com/pmndrs/valtio)
  - [zustand](https://github.com/pmndrs/zustand)
- 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
 
 ## Developing
