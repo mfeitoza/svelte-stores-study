@@ -489,6 +489,11 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+effector@^22.3.0:
+  version "22.3.0"
+  resolved "https://registry.yarnpkg.com/effector/-/effector-22.3.0.tgz#c743dd7d934ec3f9a2efac76a563cd0281bc4201"
+  integrity sha512-Nh7IXn8U4emq8YtAZf2+y2Rs6n4W/gjPaNZpZLFOXOIAsRZSNBFjtK1vHTWNKxxmNFZOaZN6XUXdT8FDs0mAdQ==
+
 electron-to-chromium@^1.4.118:
   version "1.4.136"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.136.tgz#b6a3595a9c29d6d8f60e092d40ac24f997e4e7ef"
