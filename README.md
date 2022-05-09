@@ -1,18 +1,14 @@
-# create-svelte
+# Svelte State/Stores management
 
+Libraries used:
+ - custom
+ - [effector](https://github.com/effector/effector)
+ - [nanostore](https://github.com/nanostores/nanostores)
+ - [storeon](https://github.com/storeon/storeon)
+ - [valtio](https://github.com/pmndrs/valtio)
+ - [zustand](https://github.com/pmndrs/zustand)
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte
-
-# create a new project in my-app
-npm init svelte my-app
-```
 
 ## Developing
 
