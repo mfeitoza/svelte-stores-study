@@ -1,8 +1,24 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
+	import { scale } from 'svelte/transition'
 
-	import { loaded, users } from '$lib/stores/users-nanostore';
-	import UserCard from '$lib/components/user-card.svelte';
+	import {
+		loaded,
+		users,
+		hasPrev,
+		hasNext,
+		fetchNext,
+		fetchPrev
+	} from '$lib/stores/users-nanostore'
+	import UserCard from '$lib/components/user-card.svelte'
+	import Paginator from '$lib/components/paginator.svelte'
+
+	function handlePrev() {
+		fetchPrev()
+	}
+
+	function handleNext() {
+		fetchNext()
+	}
 </script>
 
 <svelte:head>
@@ -16,6 +32,7 @@
 				<UserCard fullName={user.fullName} email={user.email} avatar={user.avatar} />
 			</div>
 		{/each}
+		<Paginator on:prev={handlePrev} on:next={handleNext} hasPrev={$hasPrev} hasNext={$hasNext} />
 	</div>
 {:else}
 	<div class="text-lg font-semibold text-center p-8">
