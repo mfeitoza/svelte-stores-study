@@ -1,13 +1,24 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { scale } from 'svelte/transition';
-	import UserCard from '$lib/components/user-card.svelte';
+	import { onMount } from 'svelte'
+	import { scale } from 'svelte/transition'
 
-	import { usersStore, fetchUsers } from '$lib/stores/users-valtio';
+	import UserCard from '$lib/components/user-card.svelte'
+	import Paginator from '$lib/components/paginator.svelte'
+
+	import { usersStore, pageStore, fetchUsers, fetchPrev, fetchNext } from '$lib/stores/users-valtio'
+	import { page } from '$app/stores'
+
+	function handlePrev() {
+		fetchPrev()
+	}
+
+	function handleNext() {
+		fetchNext()
+	}
 
 	onMount(() => {
-		fetchUsers();
-	});
+		fetchUsers()
+	})
 </script>
 
 <svelte:head>
@@ -21,6 +32,12 @@
 				<UserCard fullName={user.fullName} email={user.email} avatar={user.avatar} />
 			</div>
 		{/each}
+		<Paginator
+			on:prev={handlePrev}
+			on:next={handleNext}
+			hasPrev={$pageStore.hasPrev}
+			hasNext={$pageStore.hasNext}
+		/>
 	</div>
 {:else}
 	<div class="text-lg font-semibold text-center p-8">
