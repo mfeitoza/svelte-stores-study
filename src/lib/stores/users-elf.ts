@@ -3,8 +3,8 @@ import type { User } from '$lib/models/user'
 import { createStore, withProps, select } from '@ngneat/elf'
 import { createEffect, ofType, createAction, initEffects, registerEffects } from '@ngneat/effects'
 
-import { from, iif, EMPTY, zip, combineLatest, forkJoin } from 'rxjs'
-import { tap, map, mergeMap, switchMap, first, take } from 'rxjs/operators'
+import { from, iif, EMPTY, combineLatest } from 'rxjs'
+import { tap, map, switchMap, take } from 'rxjs/operators'
 import { getUsersPage, type IMeta } from '$lib/services/api'
 
 interface UsersProps {
@@ -27,6 +27,7 @@ const usersStore = createStore(
 	})
 )
 
+// initialize effects
 initEffects()
 
 export const users$ = usersStore.pipe(select((state) => state.users))
@@ -53,19 +54,21 @@ export function fetchUsers() {
 	return from(getUsersPage()).pipe(tap(addUsers))
 }
 
+// actions creator
 export const fetchPrevAction = createAction('fetchPrev')
 export const fetchNextAction = createAction('fetchNext')
 
+// effects listeners to actions (side-effects)
 const handlePrev = createEffect((actions) => {
 	return actions.pipe(
 		ofType(fetchPrevAction),
 		switchMap(() =>
-    combineLatest([meta$, hasPrev$]).pipe(
-        take(1),
-				switchMap(([meta, hasNext]) => iif(() => hasNext, from(getUsersPage(meta.page - 1)), EMPTY)),
+			combineLatest([meta$, hasPrev$]).pipe(
+				take(1),
+				switchMap(([meta, hasNext]) => iif(() => hasNext, from(getUsersPage(meta.page - 1)), EMPTY))
 			)
 		),
-    tap(addUsers),
+		tap(addUsers)
 	)
 })
 
@@ -73,13 +76,14 @@ const handleNext = createEffect((actions) => {
 	return actions.pipe(
 		ofType(fetchNextAction),
 		switchMap(() =>
-      combineLatest([meta$, hasNext$]).pipe(
-        take(1),
-        switchMap(([meta, hasNext]) => iif(() => hasNext, from(getUsersPage(meta.page + 1)), EMPTY)),
-      )
+			combineLatest([meta$, hasNext$]).pipe(
+				take(1),
+				switchMap(([meta, hasNext]) => iif(() => hasNext, from(getUsersPage(meta.page + 1)), EMPTY))
+			)
 		),
-    tap(addUsers),
+		tap(addUsers)
 	)
 })
 
+// register effects listeners
 registerEffects([handlePrev, handleNext])
