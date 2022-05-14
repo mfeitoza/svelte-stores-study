@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
+	import { onMount, afterUpdate } from 'svelte'
 	import { scale } from 'svelte/transition'
 
 	import UserCard from '$lib/components/user-card.svelte'
@@ -18,6 +18,10 @@
 
 	onMount(() => {
 		fetchUsers()
+	})
+
+	afterUpdate(() => {
+		console.log('afterUpdate valtio')
 	})
 </script>
 

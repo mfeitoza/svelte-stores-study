@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
+	import { scale } from 'svelte/transition'
 
-	import UserCard from '$lib/components/user-card.svelte';
-	import { loaded, users, fecthUsersFx } from '$lib/stores/users-effector';
-	import { onMount } from 'svelte';
+	import UserCard from '$lib/components/user-card.svelte'
+	import { loaded, users, fecthUsersFx } from '$lib/stores/users-effector'
+	import { onMount, afterUpdate } from 'svelte'
 
-	$: console.log($loaded, $users);
+	$: console.log($loaded, $users)
 
 	onMount(() => {
-		fecthUsersFx();
-	});
+		fecthUsersFx()
+	})
+
+	afterUpdate(() => {
+		console.log('afterUpdate effector')
+	})
 </script>
 
 <svelte:head>

@@ -1,13 +1,17 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import { scale } from 'svelte/transition'
+	import { onMount, afterUpdate } from 'svelte'
 
-	import { loaded, users, fetchUsers } from '$lib/stores/users-custom';
-	import UserCard from '$lib/components/user-card.svelte';
+	import { loaded, users, fetchUsers } from '$lib/stores/users-custom'
+	import UserCard from '$lib/components/user-card.svelte'
 
 	onMount(() => {
-		fetchUsers();
-	});
+		fetchUsers()
+	})
+
+	afterUpdate(() => {
+		console.log('afterUpdate custom')
+	})
 </script>
 
 <svelte:head>

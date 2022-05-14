@@ -1,20 +1,24 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { scale } from 'svelte/transition';
+	import { onMount, afterUpdate } from 'svelte'
+	import { scale } from 'svelte/transition'
 
-	import UserCard from '$lib/components/user-card.svelte';
+	import UserCard from '$lib/components/user-card.svelte'
 
-	import { provideStoreon } from '@storeon/svelte';
-	import { useStoreon } from '@storeon/svelte';
+	import { provideStoreon } from '@storeon/svelte'
+	import { useStoreon } from '@storeon/svelte'
 
-	import { usersStore, type UsersState, type UsersEvent } from '$lib/stores/users-storeon';
+	import { usersStore, type UsersState, type UsersEvent } from '$lib/stores/users-storeon'
 
-	provideStoreon(usersStore);
-	const { users, loaded, dispatch } = useStoreon<UsersState, UsersEvent>('users', 'loaded');
+	provideStoreon(usersStore)
+	const { users, loaded, dispatch } = useStoreon<UsersState, UsersEvent>('users', 'loaded')
 
 	onMount(() => {
-		dispatch('fetchUsers');
-	});
+		dispatch('fetchUsers')
+	})
+
+	afterUpdate(() => {
+		console.log('afterUpdate storeon')
+	})
 </script>
 
 <svelte:head>
