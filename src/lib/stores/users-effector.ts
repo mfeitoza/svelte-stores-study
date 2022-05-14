@@ -13,13 +13,12 @@ export const fecthUsersFx = createEffect<void, User[]>(async () => {
   return await getUsers()
 })
 
-users.on(fecthUsersFx.doneData, (_, users) => users)
+users.on(setUsers, (_, users) => users)
 loaded.on(setLoaded, () => true)
 
 sample({
-  clock: setUsers,
-  source: users,
-  target: fecthUsersFx
+  clock: fecthUsersFx.doneData,
+  target: setUsers
 })
 
 sample({
