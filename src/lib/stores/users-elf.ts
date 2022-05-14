@@ -56,28 +56,9 @@ export function fetchUsers() {
 export const fetchPrevAction = createAction('fetchPrev')
 export const fetchNextAction = createAction('fetchNext')
 
-export function handlePrev2() {
-	return zip(meta$, hasPrev$)
-		.pipe(
-			mergeMap(([meta, hasPrev]) => iif(() => hasPrev, from(getUsersPage(meta.page - 1)), EMPTY)),
-			tap(console.log),
-			tap(addUsers)
-		)
-		.subscribe()
-}
-
-export function handleNext2() {
-	return zip(meta$, hasNext$).pipe(
-		mergeMap(([meta, hasNext]) => iif(() => hasNext, from(getUsersPage(meta.page + 1)), EMPTY)),
-		tap(console.log),
-		tap(addUsers)
-	)
-}
-
 const handlePrev = createEffect((actions) => {
 	return actions.pipe(
 		ofType(fetchPrevAction),
-    tap(console.log),
 		switchMap(() =>
     combineLatest([meta$, hasPrev$]).pipe(
         take(1),
@@ -91,7 +72,6 @@ const handlePrev = createEffect((actions) => {
 const handleNext = createEffect((actions) => {
 	return actions.pipe(
 		ofType(fetchNextAction),
-    tap(console.log),
 		switchMap(() =>
       combineLatest([meta$, hasNext$]).pipe(
         take(1),
